@@ -8,7 +8,7 @@ const Board = (): JSX.Element => {
   
   const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>, i: number, j: number) => {
     const value = !!event.target.value ? parseInt(event.target.value, 10) : -1;
-    board[i][j] = value;
+    board[i][j] = Number.isNaN(value) || value <= 0 || value > 9 ? -1 : value;
     setBoard(board);
     setToggle(t => !t)
   }, [board]);
